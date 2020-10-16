@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Zing\LaravelEloquentTags\Tests;
 
 use Illuminate\Database\Eloquent\Collection;
-use Zing\LaravelEloquentTags\Tag;
 use Zing\LaravelEloquentTags\Tests\Models\Product;
 
 class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
@@ -66,14 +65,7 @@ class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
 
     public function testScopeWithAnyTags(): void
     {
-        self::assertSame(
-            Product::query()->withAnyTags(['foo', 'bar']),
-            Product::query()->whereHas(
-                'tags',
-                function ($query) {
-                    return $query->whereKey(Tag::query()->whereIn('name', ['foo', 'bar'])->pluck('id')->toArray());
-                }
-            )
-        );
+        $this->product->attachTag('foo');
+        self::assertTrue(Product::query()->withAnyTags(['foo', 'bar'])->exists());
     }
 }
