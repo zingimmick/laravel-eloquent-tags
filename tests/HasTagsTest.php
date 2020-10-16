@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Zing\LaravelEloquentTags\Tests;
 
 use Illuminate\Database\Eloquent\Collection;
+use Zing\LaravelEloquentTags\Tag;
 use Zing\LaravelEloquentTags\Tests\Models\Product;
 
 class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
 {
+    protected function getTagClassName()
+    {
+        return Tag::class;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -33,6 +39,8 @@ class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
 
     public function testTags(): void
     {
+        $this->product->attachTags(['foo', 'bar']);
+        self::assertInstanceOf($this->getTagClassName(), $this->product->tags()->first());
         self::assertInstanceOf(Collection::class, $this->product->tags()->get());
     }
 
