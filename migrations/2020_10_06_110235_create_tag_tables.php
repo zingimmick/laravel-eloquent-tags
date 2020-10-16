@@ -13,17 +13,17 @@ class CreateTagTables extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create(config('laravel-eloquent-tags.table_names.tags'), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
 
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create(config('laravel-eloquent-tags.table_names.model_has_tags'), function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
             $table->morphs('taggable');
 
-            $table->primary(['tag_id', 'taggable_id', 'taggable_type']);
+            $table->primary(['tag_id', config('laravel-eloquent-tags.column_names.taggable_morph_key'), 'taggable_type']);
 
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
@@ -36,7 +36,7 @@ class CreateTagTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taggables');
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists(config('laravel-eloquent-tags.table_names.model_has_tags'));
+        Schema::dropIfExists(config('laravel-eloquent-tags.table_names.tags'));
     }
 }

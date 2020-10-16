@@ -6,6 +6,7 @@ namespace Zing\LaravelEloquentTags;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
@@ -16,13 +17,17 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasTags
 {
+    protected static function getTagClassName()
+    {
+        return config('laravel-eloquent-tags.models.tag');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function tags(): MorphToMany
     {
-        return $this
-            ->morphToMany(Tag::class, 'taggable');
+        return $this->morphToMany(static::getTagClassName(), 'taggable', config('laravel-eloquent-tags.table_names.model_has_tags'), config('laravel-eloquent-tags.column_names.taggable_morph_key'), 'tag_id');
     }
 
     /**
@@ -35,7 +40,7 @@ trait HasTags
     {
         $tags = static::parseTags($tags);
         $tags->each(
-            function (Tag $tag) use ($query): void {
+            function (Model $tag) use ($query): void {
                 $query->whereHas(
                     'tags',
                     function (Builder $query) use ($tag): void {
@@ -135,13 +140,13 @@ trait HasTags
         );
     }
 
-    protected static function parseTag($value): Tag
+    protected static function parseTag($value): Model
     {
         if ($value instanceof Tag) {
             return $value;
         }
 
-        return Tag::query()->firstOrCreate(
+        return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate(
             [
                 'name' => $value,
             ]
