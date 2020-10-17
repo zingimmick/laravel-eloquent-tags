@@ -142,7 +142,7 @@ trait HasTags
 
     protected static function parseTag($value): Model
     {
-        if ($value instanceof Tag) {
+        if ($value instanceof Model) {
             return $value;
         }
 
@@ -151,17 +151,5 @@ trait HasTags
                 'name' => $value,
             ]
         );
-    }
-
-    /**
-     * @param $ids
-     *
-     * @return \Zing\LaravelEloquentTags\HasTags
-     */
-    protected function syncTagIds($ids)
-    {
-        $this->tags()->sync($ids);
-
-        return $this;
     }
 }

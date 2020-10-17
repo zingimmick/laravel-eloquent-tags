@@ -67,6 +67,8 @@ class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
     public function testSyncTags(): void
     {
         $this->product->attachTags(['foo', 'bar']);
+        $this->product->syncTags([$this->product->tags()->first()]);
+        self::assertSame(1, $this->product->tags()->count());
         $this->product->syncTags([]);
         self::assertSame(0, $this->product->tags()->count());
     }
