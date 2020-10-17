@@ -56,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EloquentTagsServiceProvider"
+                "Zing\\LaravelEloquentTags\\EloquentTagsServiceProvider"
             ]
         }
     }
