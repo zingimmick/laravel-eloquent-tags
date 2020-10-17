@@ -8,6 +8,6 @@ class ServiceProviderTest extends TestCase
 {
     public function testConfig(): void
     {
-        self::assertIsArray(config('laravel-eloquent-tags'));
+        self::assertIsArray(config('eloquent-tags'));
     }
 }

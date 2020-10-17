@@ -1,7 +1,7 @@
 {
     "name": "zing/laravel-eloquent-tags",
-    "description": "A laravel-eloquent-tags repository for Laravel Packages",
-    "keywords": ["laravel", "package", "laravel-eloquent-tags"],
+    "description": "Manager tags for a Laravel eloquent",
+    "keywords": ["laravel", "eloquent", "tags"],
     "license": "MIT",
     "authors": [
         {
@@ -56,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-              "Zing\\LaravelEloquentTags\\LaravelEloquentTagsServiceProvider"
+                "EloquentTagsServiceProvider"
             ]
         }
     }

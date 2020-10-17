@@ -6,14 +6,14 @@ namespace Zing\LaravelEloquentTags;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelEloquentTagsServiceProvider extends ServiceProvider
+class EloquentTagsServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes(
                 [
-                    $this->getConfigPath() => config_path('laravel-eloquent-tags.php'),
+                    $this->getConfigPath() => config_path('eloquent-tags.php'),
                 ],
                 'config'
             );
@@ -22,7 +22,7 @@ class LaravelEloquentTagsServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom($this->getConfigPath(), 'laravel-eloquent-tags');
+        $this->mergeConfigFrom($this->getConfigPath(), 'eloquent-tags');
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         }
@@ -30,6 +30,6 @@ class LaravelEloquentTagsServiceProvider extends ServiceProvider
 
     protected function getConfigPath(): string
     {
-        return __DIR__ . '/../config/laravel-eloquent-tags.php';
+        return __DIR__ . '/../config/eloquent-tags.php';
     }
 }

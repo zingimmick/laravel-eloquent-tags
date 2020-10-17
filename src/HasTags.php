@@ -19,7 +19,7 @@ trait HasTags
 {
     protected static function getTagClassName()
     {
-        return config('laravel-eloquent-tags.models.tag');
+        return config('eloquent-tags.models.tag');
     }
 
     /**
@@ -27,7 +27,7 @@ trait HasTags
      */
     public function tags(): MorphToMany
     {
-        return $this->morphToMany(static::getTagClassName(), 'taggable', config('laravel-eloquent-tags.table_names.model_has_tags'), config('laravel-eloquent-tags.column_names.taggable_morph_key'), 'tag_id');
+        return $this->morphToMany(static::getTagClassName(), 'taggable', config('eloquent-tags.table_names.model_has_tags'), config('eloquent-tags.column_names.taggable_morph_key'), 'tag_id');
     }
 
     /**

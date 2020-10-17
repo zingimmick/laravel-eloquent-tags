@@ -7,7 +7,7 @@ namespace Zing\LaravelEloquentTags\Tests;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Zing\LaravelEloquentTags\LaravelEloquentTagsServiceProvider;
+use Zing\LaravelEloquentTags\EloquentTagsServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -37,7 +37,7 @@ class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            LaravelEloquentTagsServiceProvider::class,
+            EloquentTagsServiceProvider::class,
         ];
     }
 }

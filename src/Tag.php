@@ -16,6 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tag extends Model
 {
+    public function getTable()
+    {
+        return config(config('eloquent-tags.table_names.tags'), parent::getTable());
+    }
+
     public $timestamps = false;
 
     protected $fillable = [

@@ -19,7 +19,7 @@ class CustomTagTest extends HasTagsTest
 
         config(
             [
-                'laravel-eloquent-tags.models.tag' => $this->getTagClassName(),
+                'eloquent-tags.models.tag' => $this->getTagClassName(),
             ]
         );
     }
