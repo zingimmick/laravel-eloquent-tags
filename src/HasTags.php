@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property-read \Illuminate\Database\Eloquent\Collection|\Zing\LaravelEloquentTags\Tag[] $tags
+ * @property-read int|null $tags_count
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder withAllTags($tags)
  * @method static static|\Illuminate\Database\Eloquent\Builder withAnyTags($tags)
