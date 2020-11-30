@@ -15,7 +15,13 @@ class EloquentTagsServiceProvider extends ServiceProvider
                 [
                     $this->getConfigPath() => config_path('eloquent-tags.php'),
                 ],
-                'config'
+                'eloquent-tags-config'
+            );
+            $this->publishes(
+                [
+                    $this->getMigrationsPath() => database_path('migrations'),
+                ],
+                'eloquent-tags-migrations'
             );
         }
     }
@@ -23,9 +29,19 @@ class EloquentTagsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom($this->getConfigPath(), 'eloquent-tags');
-        if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        if ($this->app->runningInConsole() && $this->shouldLoadMigrations()) {
+            $this->loadMigrationsFrom($this->getMigrationsPath());
         }
+    }
+
+    protected function getMigrationsPath(): string
+    {
+        return __DIR__ . '/../migrations';
+    }
+
+    private function shouldLoadMigrations()
+    {
+        return config('eloquent-tags.load_migrations');
     }
 
     protected function getConfigPath(): string
