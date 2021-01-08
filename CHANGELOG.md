@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+- [#15] Bump codecov/codecov-action from v1.2.0 to v1.2.1
+- [#14] Bump codecov/codecov-action from v1.1.1 to v1.2.0
+- [#12] Bump codecov/codecov-action from v1.1.0 to v1.1.1
+- [#11] Bump codecov/codecov-action from v1.0.15 to v1.1.0
+- [#10] Bump paambaati/codeclimate-action from v2.7.4 to v2.7.5
+
+## [0.1.0] - 2020-11-23
+
 - [#8] Add usage document
 
 ### Changed
@@ -37,3 +47,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [#3]: https://github.com/zingimmick/laravel-eloquent-tags/pull/3
 [#2]: https://github.com/zingimmick/laravel-eloquent-tags/pull/2
 [0.0.8]: https://github.com/zingimmick/laravel-eloquent-tags/compare/0.0.5...0.0.8
+[#15]: https://github.com/zingimmick/laravel-eloquent-tags/pull/15
+[#14]: https://github.com/zingimmick/laravel-eloquent-tags/pull/14
+[#12]: https://github.com/zingimmick/laravel-eloquent-tags/pull/12
+[#11]: https://github.com/zingimmick/laravel-eloquent-tags/pull/11
+[#10]: https://github.com/zingimmick/laravel-eloquent-tags/pull/10
+[0.1.0]: https://github.com/zingimmick/laravel-eloquent-tags/compare/0.0.8...0.1.0
