@@ -39,7 +39,7 @@ class EloquentTagsServiceProvider extends ServiceProvider
         return __DIR__ . '/../migrations';
     }
 
-    private function shouldLoadMigrations()
+    private function shouldLoadMigrations(): bool
     {
         return config('eloquent-tags.load_migrations');
     }
