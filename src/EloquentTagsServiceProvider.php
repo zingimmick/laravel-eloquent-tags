@@ -41,7 +41,7 @@ class EloquentTagsServiceProvider extends ServiceProvider
 
     private function shouldLoadMigrations(): bool
     {
-        return config('eloquent-tags.load_migrations');
+        return (bool) config('eloquent-tags.load_migrations');
     }
 
     protected function getConfigPath(): string
