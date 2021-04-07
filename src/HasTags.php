@@ -28,7 +28,13 @@ trait HasTags
      */
     public function tags(): MorphToMany
     {
-        return $this->morphToMany(static::getTagClassName(), 'taggable', config('eloquent-tags.table_names.model_has_tags'), config('eloquent-tags.column_names.taggable_morph_key'), 'tag_id');
+        return $this->morphToMany(
+            static::getTagClassName(),
+            'taggable',
+            config('eloquent-tags.table_names.model_has_tags'),
+            config('eloquent-tags.column_names.taggable_morph_key'),
+            'tag_id'
+        );
     }
 
     /**
@@ -79,7 +85,8 @@ trait HasTags
      */
     public function attachTags($tags)
     {
-        $this->tags()->attach(static::parseTags($tags));
+        $this->tags()
+            ->attach(static::parseTags($tags));
 
         return $this;
     }
@@ -103,7 +110,8 @@ trait HasTags
      */
     public function detachTags($tags)
     {
-        $this->tags()->detach(static::parseTags($tags));
+        $this->tags()
+            ->detach(static::parseTags($tags));
 
         return $this;
     }
@@ -127,18 +135,17 @@ trait HasTags
      */
     public function syncTags($tags)
     {
-        $this->tags()->sync(static::parseTags($tags));
+        $this->tags()
+            ->sync(static::parseTags($tags));
 
         return $this;
     }
 
     protected static function parseTags($values)
     {
-        return Collection::make($values)->map(
-            function ($value) {
-                return self::parseTag($value);
-            }
-        );
+        return Collection::make($values)->map(function ($value) {
+            return self::parseTag($value);
+        });
     }
 
     protected static function parseTag($value): Model
@@ -147,10 +154,8 @@ trait HasTags
             return $value;
         }
 
-        return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate(
-            [
-                'name' => $value,
-            ]
-        );
+        return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate([
+            'name' => $value,
+        ]);
     }
 }
