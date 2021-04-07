@@ -10,7 +10,5 @@ class CustomTag extends Model
 {
     protected $table = 'tags';
 
-    protected $fillable = [
-        'name',
-    ];
+    protected $fillable = ['name'];
 }

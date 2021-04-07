@@ -14,16 +14,11 @@ class TagTest extends TestCase
     public function testFillable(): void
     {
         $name = $this->faker->name;
-        Tag::query()->create(
-            [
-                'name' => $name,
-            ]
-        );
-        $this->assertDatabaseHas(
-            Tag::query()->getModel()->getTable(),
-            [
-                'name' => $name,
-            ]
-        );
+        Tag::query()->create([
+            'name' => $name,
+        ]);
+        $this->assertDatabaseHas(Tag::query()->getModel()->getTable(), [
+            'name' => $name,
+        ]);
     }
 }

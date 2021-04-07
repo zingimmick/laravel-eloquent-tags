@@ -27,17 +27,13 @@ class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app): void
     {
-        config(
-            [
-                'database.default' => 'testing',
-            ]
-        );
+        config([
+            'database.default' => 'testing',
+        ]);
     }
 
     protected function getPackageProviders($app)
     {
-        return [
-            EloquentTagsServiceProvider::class,
-        ];
+        return [EloquentTagsServiceProvider::class];
     }
 }

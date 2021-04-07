@@ -17,11 +17,9 @@ class CustomTagTest extends HasTagsTest
     {
         parent::getEnvironmentSetUp($app);
 
-        config(
-            [
-                'eloquent-tags.models.tag' => $this->getTagClassName(),
-            ]
-        );
+        config([
+            'eloquent-tags.models.tag' => $this->getTagClassName(),
+        ]);
     }
 
     protected function getTagClassName()
