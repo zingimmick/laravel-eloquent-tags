@@ -12,5 +12,5 @@ return [
     'table_names' => [
         'tags' => 'tags',
         'model_has_tags' => 'taggables',
-    ]
+    ],
 ];
