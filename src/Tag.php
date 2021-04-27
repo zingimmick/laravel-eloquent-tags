@@ -18,7 +18,7 @@ class Tag extends Model
 {
     public function getTable()
     {
-        return config(config('eloquent-tags.table_names.tags'), parent::getTable());
+        return config('eloquent-tags.table_names.tags', parent::getTable());
     }
 
     public $timestamps = false;
