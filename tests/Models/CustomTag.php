@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomTag extends Model
 {
-    protected $table = 'tags';
+    public function getTable()
+    {
+        return config('eloquent-tags.table_names.tags', parent::getTable());
+    }
 
     protected $fillable = ['name'];
 }
