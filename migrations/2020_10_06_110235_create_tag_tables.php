@@ -30,7 +30,7 @@ class CreateTagTables extends Migration
                 $table->unsignedBigInteger('tag_id');
                 $table->morphs('taggable');
 
-                $table->primary(['tag_id', config('eloquent-tags.column_names.taggable_morph_key'), 'taggable_type']);
+                $table->primary(['tag_id', 'taggable_id', 'taggable_type']);
 
                 $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             }

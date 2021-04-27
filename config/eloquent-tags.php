@@ -13,7 +13,4 @@ return [
         'tags' => 'tags',
         'model_has_tags' => 'taggables',
     ],
-    'column_names' => [
-        'taggable_morph_key' => 'taggable_id',
-    ],
 ];
