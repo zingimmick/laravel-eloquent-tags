@@ -22,7 +22,7 @@ class CustomTagTest extends HasTagsTest
         ]);
     }
 
-    protected function getTagClassName()
+    protected function getTagClassName(): string
     {
         return CustomTag::class;
     }

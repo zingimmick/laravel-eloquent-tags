@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Zing\LaravelEloquentTags\Tag;
 use Zing\LaravelEloquentTags\Tests\Models\Product;
 
-class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
+class HasTagsTest extends TestCase
 {
-    protected function getTagClassName()
+    /**
+     * @return class-string
+     */
+    protected function getTagClassName(): string
     {
         return Tag::class;
     }
@@ -22,6 +25,9 @@ class HasTagsTest extends \Zing\LaravelEloquentTags\Tests\TestCase
         $this->product = Product::query()->create();
     }
 
+    /**
+     * @var \Zing\LaravelEloquentTags\Tests\Models\Product
+     */
     protected $product;
 
     public function testDetachTags(): void

@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasTags
 {
-    protected static function getTagClassName()
+    protected static function getTagClassName(): string
     {
         return config('eloquent-tags.models.tag');
     }
@@ -141,13 +141,23 @@ trait HasTags
         return $this;
     }
 
-    protected static function parseTags($values)
+    /**
+     * @param array|\ArrayAccess $values
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    protected static function parseTags($values): Collection
     {
         return Collection::make($values)->map(function ($value) {
             return self::parseTag($value);
         });
     }
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     protected static function parseTag($value): Model
     {
         if ($value instanceof Model) {
