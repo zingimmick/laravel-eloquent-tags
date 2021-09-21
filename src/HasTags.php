@@ -23,9 +23,6 @@ trait HasTags
         return config('eloquent-tags.models.tag');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
     public function tags(): MorphToMany
     {
         return $this->morphToMany(
@@ -38,10 +35,7 @@ trait HasTags
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array|\ArrayAccess|\Zing\LaravelEloquentTags\Tag $tags
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithAllTags(Builder $query, $tags): Builder
     {
@@ -61,10 +55,7 @@ trait HasTags
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param array|\ArrayAccess|\Zing\LaravelEloquentTags\Tag $tags
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithAnyTags(Builder $query, $tags): Builder
     {
@@ -143,8 +134,6 @@ trait HasTags
 
     /**
      * @param array|\ArrayAccess $values
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     protected static function parseTags($values): Collection
     {
@@ -155,8 +144,6 @@ trait HasTags
 
     /**
      * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
-     *
-     * @return \Illuminate\Database\Eloquent\Model
      */
     protected static function parseTag($value): Model
     {
