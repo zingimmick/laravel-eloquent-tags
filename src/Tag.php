@@ -21,7 +21,13 @@ class Tag extends Model
         return config('eloquent-tags.table_names.tags', parent::getTable());
     }
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['name'];
 }

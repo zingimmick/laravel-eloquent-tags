@@ -137,7 +137,7 @@ trait HasTags
      */
     protected static function parseTags($values): Collection
     {
-        return Collection::make($values)->map(function ($value) {
+        return Collection::make($values)->map(function ($value): Model {
             return self::parseTag($value);
         });
     }

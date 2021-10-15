@@ -13,5 +13,8 @@ class CustomTag extends Model
         return config('eloquent-tags.table_names.tags', parent::getTable());
     }
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['name'];
 }
