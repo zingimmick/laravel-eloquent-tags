@@ -13,7 +13,7 @@ class TagTest extends TestCase
 
     public function testFillable(): void
     {
-        $name = $this->faker->name;
+        $name = $this->faker->name();
         Tag::query()->create([
             'name' => $name,
         ]);
