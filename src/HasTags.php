@@ -146,7 +146,7 @@ trait HasTags
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model|string|mixed $value
+     * @param \Illuminate\Database\Eloquent\Model|string $value
      *
      * @return \Zing\LaravelEloquentTags\Tag
      */
