@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomTag extends Model
 {
-    public function getTable()
+    public function getTable(): string
     {
         return config('eloquent-tags.table_names.tags', parent::getTable());
     }

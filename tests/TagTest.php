@@ -7,7 +7,10 @@ namespace Zing\LaravelEloquentTags\Tests;
 use Illuminate\Foundation\Testing\WithFaker;
 use Zing\LaravelEloquentTags\Tag;
 
-class TagTest extends TestCase
+/**
+ * @internal
+ */
+final class TagTest extends TestCase
 {
     use WithFaker;
 

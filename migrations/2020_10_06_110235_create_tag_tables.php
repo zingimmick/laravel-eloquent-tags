@@ -10,8 +10,6 @@ class CreateTagTables extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
@@ -32,15 +30,16 @@ class CreateTagTables extends Migration
 
                 $table->primary(['tag_id', 'taggable_id', 'taggable_type']);
 
-                $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+                $table->foreign('tag_id')
+                    ->references('id')
+                    ->on('tags')
+                    ->onDelete('cascade');
             }
         );
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

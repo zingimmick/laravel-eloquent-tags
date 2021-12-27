@@ -9,20 +9,23 @@ use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Zing\LaravelEloquentTags\EloquentTagsServiceProvider;
 
-class TestCase extends BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
-    protected function setUp(): void
+    /**
+     * @before
+     */
+    protected function setUpDatabaseMigrations(): void
     {
-        parent::setUp();
-
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
-        Schema::create(
-            'products',
-            function (Blueprint $table): void {
-                $table->bigIncrements('id');
-                $table->timestamps();
-            }
-        );
+        $this->afterApplicationCreated(function (): void {
+            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+            Schema::create(
+                'products',
+                function (Blueprint $table): void {
+                    $table->bigIncrements('id');
+                    $table->timestamps();
+                }
+            );
+        });
     }
 
     protected function getEnvironmentSetUp($app): void
@@ -37,7 +40,7 @@ class TestCase extends BaseTestCase
      *
      * @return array<class-string<\Illuminate\Support\ServiceProvider>>
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [EloquentTagsServiceProvider::class];
     }
