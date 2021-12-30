@@ -155,7 +155,7 @@ trait HasTags
      */
     protected static function parseTag($value): Model
     {
-        if (is_a($value, self::getTagClassName())) {
+        if (is_a($value, self::getTagClassName(), false)) {
             return $value;
         }
 
