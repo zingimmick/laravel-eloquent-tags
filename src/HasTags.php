@@ -41,7 +41,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess|\Zing\LaravelEloquentTags\Tag $tags
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string>|\Zing\LaravelEloquentTags\Tag $tags
      */
     public function scopeWithAllTags(Builder $query, $tags): Builder
     {
@@ -61,7 +61,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess|\Zing\LaravelEloquentTags\Tag $tags
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string>|\Zing\LaravelEloquentTags\Tag $tags
      */
     public function scopeWithAnyTags(Builder $query, $tags): Builder
     {
@@ -76,7 +76,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess|\Zing\LaravelEloquentTags\Tag $tags
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string>|\Zing\LaravelEloquentTags\Tag $tags
      *
      * @return $this
      */
@@ -101,7 +101,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess $tags
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string> $tags
      *
      * @return $this
      */
@@ -126,7 +126,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess $tags
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string> $tags
      *
      * @return $this
      */
@@ -139,7 +139,7 @@ trait HasTags
     }
 
     /**
-     * @param array<\Zing\LaravelEloquentTags\Tag|string>|\ArrayAccess $values
+     * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string> $values
      */
     protected static function parseTags($values): Collection
     {
