@@ -45,6 +45,7 @@ use Zing\LaravelEloquentTags\Tests\Models\Product;
      public function provideClasses(): iterable
      {
          yield [Tag::class];
+
          yield [CustomTag::class];
      }
 
