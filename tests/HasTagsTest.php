@@ -14,14 +14,11 @@ use Zing\LaravelEloquentTags\Tests\Models\Product;
   */
  final class HasTagsTest extends TestCase
  {
-     /**
-      * @before
-      */
-     public function setUpProduct(): void
+     protected function setUp(): void
      {
-         $this->afterApplicationCreated(function (): void {
-             $this->product = Product::query()->create();
-         });
+         parent::setUp();
+
+         $this->product = Product::query()->create();
      }
 
      /**
