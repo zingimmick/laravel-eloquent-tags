@@ -3,6 +3,11 @@
     "description": "Manage tags for Laravel eloquent",
     "keywords": ["laravel", "eloquent", "tags"],
     "license": "MIT",
+    "homepage": "https://github.com/zingimmick/laravel-eloquent-tags",
+    "support": {
+        "issues": "https://github.com/zingimmick/laravel-eloquent-tags/issues",
+        "source": "https://github.com/zingimmick/laravel-eloquent-tags"
+    },
     "authors": [
         {
             "name": "zingimmick",
