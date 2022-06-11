@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tag extends Model
 {
-    public function getTable()
+    public function getTable(): string
     {
         return config('eloquent-tags.table_names.tags', parent::getTable());
     }

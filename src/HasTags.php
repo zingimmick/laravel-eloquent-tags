@@ -155,12 +155,16 @@ trait HasTags
      */
     protected static function parseTag($value): Model
     {
+        if (\is_string($value)) {
+            return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate([
+                'name' => $value,
+            ]);
+        }
+
         if (is_a($value, self::getTagClassName(), false)) {
             return $value;
         }
 
-        return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate([
-            'name' => $value,
-        ]);
+        throw new \RuntimeException('Unsupported type for tag');
     }
 }
