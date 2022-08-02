@@ -20,7 +20,7 @@ abstract class TestCase extends BaseTestCase
             $this->loadMigrationsFrom(__DIR__ . '/../migrations');
             Schema::create(
                 'products',
-                function (Blueprint $table): void {
+                static function (Blueprint $table): void {
                     $table->bigIncrements('id');
                     $table->timestamps();
                 }

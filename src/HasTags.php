@@ -47,10 +47,10 @@ trait HasTags
     {
         $tags = static::parseTags($tags);
         $tags->each(
-            function (Model $tag) use ($query): void {
+            static function (Model $tag) use ($query): void {
                 $query->whereHas(
                     'tags',
-                    function (Builder $query) use ($tag): void {
+                    static function (Builder $query) use ($tag): void {
                         $query->whereKey($tag->getKey());
                     }
                 );
@@ -69,7 +69,7 @@ trait HasTags
 
         return $query->whereHas(
             'tags',
-            function (Builder $query) use ($tags): void {
+            static function (Builder $query) use ($tags): void {
                 $query->whereKey($tags->modelKeys());
             }
         );
@@ -143,7 +143,7 @@ trait HasTags
      */
     protected static function parseTags($values): Collection
     {
-        return Collection::make($values)->map(function ($value): Model {
+        return Collection::make($values)->map(static function ($value): Model {
             return self::parseTag($value);
         });
     }

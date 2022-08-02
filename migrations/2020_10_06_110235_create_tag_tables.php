@@ -15,7 +15,7 @@ class CreateTagTables extends Migration
     {
         Schema::create(
             config('eloquent-tags.table_names.tags'),
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->timestamps();
@@ -24,12 +24,10 @@ class CreateTagTables extends Migration
 
         Schema::create(
             config('eloquent-tags.table_names.model_has_tags'),
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->unsignedBigInteger('tag_id');
                 $table->morphs('taggable');
-
                 $table->primary(['tag_id', 'taggable_id', 'taggable_type']);
-
                 $table->foreign('tag_id')
                     ->references('id')
                     ->on('tags')
