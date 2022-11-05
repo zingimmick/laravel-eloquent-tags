@@ -43,8 +43,10 @@ trait HasTags
     /**
      * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string>|\Zing\LaravelEloquentTags\Tag $tags
      */
-    public function scopeWithAllTags(Builder $query, $tags): Builder
-    {
+    public function scopeWithAllTags(
+        Builder $query,
+        iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags
+    ): Builder {
         $tags = static::parseTags($tags);
         $tags->each(
             static function (Model $tag) use ($query): void {
@@ -63,8 +65,10 @@ trait HasTags
     /**
      * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string>|\Zing\LaravelEloquentTags\Tag $tags
      */
-    public function scopeWithAnyTags(Builder $query, $tags): Builder
-    {
+    public function scopeWithAnyTags(
+        Builder $query,
+        iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags
+    ): Builder {
         $tags = static::parseTags($tags);
 
         return $query->whereHas(
@@ -80,7 +84,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function attachTags($tags)
+    public function attachTags(iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags)
     {
         $this->tags()
             ->attach(static::parseTags($tags));
@@ -89,11 +93,9 @@ trait HasTags
     }
 
     /**
-     * @param string|\Zing\LaravelEloquentTags\Tag $tag
-     *
      * @return $this
      */
-    public function attachTag($tag)
+    public function attachTag(string|Tag $tag)
     {
         $this->attachTags([$tag]);
 
@@ -105,7 +107,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function detachTags($tags)
+    public function detachTags(iterable|\Illuminate\Contracts\Support\Arrayable $tags)
     {
         $this->tags()
             ->detach(static::parseTags($tags));
@@ -114,11 +116,9 @@ trait HasTags
     }
 
     /**
-     * @param string|\Zing\LaravelEloquentTags\Tag $tag
-     *
      * @return $this
      */
-    public function detachTag($tag)
+    public function detachTag(string|Tag $tag)
     {
         $this->detachTags([$tag]);
 
@@ -130,7 +130,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function syncTags($tags)
+    public function syncTags(iterable|\Illuminate\Contracts\Support\Arrayable $tags)
     {
         $this->tags()
             ->sync(static::parseTags($tags));
@@ -141,19 +141,15 @@ trait HasTags
     /**
      * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string> $values
      */
-    protected static function parseTags($values): Collection
+    protected static function parseTags(iterable|\Illuminate\Contracts\Support\Arrayable $values): Collection
     {
-        return Collection::make($values)->map(static function ($value): Model {
-            return self::parseTag($value);
-        });
+        return Collection::make($values)->map(static fn ($value): Model => self::parseTag($value));
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model|string $value
-     *
      * @return \Zing\LaravelEloquentTags\Tag
      */
-    protected static function parseTag($value): Model
+    protected static function parseTag(Model|string $value): Model
     {
         if (\is_string($value)) {
             return forward_static_call([static::getTagClassName(), 'query'])->firstOrCreate([

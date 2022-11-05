@@ -46,10 +46,7 @@ final class HasTagsTest extends TestCase
         yield [CustomTag::class];
     }
 
-    /**
-     * @var \Zing\LaravelEloquentTags\Tests\Models\Product
-     */
-    private $product;
+    private \Zing\LaravelEloquentTags\Tests\Models\Product $product;
 
     /**
      * @dataProvider provideClasses

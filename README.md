@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/zing/laravel-eloquent-tags"><img src="https://poser.pugx.org/zing/laravel-eloquent-tags/license" alt="License"></a>
 </p>
 
-> **Requires [PHP 7.3.0+](https://php.net/releases/)**
+> **Requires [PHP 8.0+](https://php.net/releases/)**
 
 Require Laravel Eloquent Tags using [Composer](https://getcomposer.org):
 
