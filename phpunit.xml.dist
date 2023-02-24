@@ -1,23 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-        beStrictAboutOutputDuringTests="true"
-        bootstrap="vendor/autoload.php"
-        colors="true"
-        convertDeprecationsToExceptions="true"
-        failOnRisky="true"
-        failOnWarning="true"
-        verbose="true"
->
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" beStrictAboutOutputDuringTests="true" bootstrap="vendor/autoload.php" colors="true" failOnRisky="true" failOnWarning="true" cacheDirectory=".phpunit.cache">
+  <coverage>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </coverage>
   <testsuites>
     <testsuite name="Laravel Eloquent Tags Test Suite">
       <directory suffix="Test.php">./tests</directory>
     </testsuite>
   </testsuites>
-  <filter>
-    <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">./src</directory>
-    </whitelist>
-  </filter>
 </phpunit>

@@ -27,7 +27,7 @@ final class HasTagsTest extends TestCase
     public function setUpTagClass(): void
     {
         $this->afterApplicationCreated(function (): void {
-            $data = $this->getProvidedData();
+            $data = method_exists($this, 'providedData') ? $this->providedData() : $this->getProvidedData();
             if (isset($data[0])) {
                 config([
                     'eloquent-tags.models.tag' => $data[0],
@@ -39,7 +39,7 @@ final class HasTagsTest extends TestCase
     /**
      * @return \Iterator<array{class-string<\Zing\LaravelEloquentTags\Tag>}|array{class-string<\Zing\LaravelEloquentTags\Tests\Models\CustomTag>}>
      */
-    public function provideClasses(): \Iterator
+    public static function provideClasses(): \Iterator
     {
         yield [Tag::class];
 
