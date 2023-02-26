@@ -27,7 +27,7 @@ final class HasTagsTest extends TestCase
     public function setUpTagClass(): void
     {
         $this->afterApplicationCreated(function (): void {
-            $data = method_exists($this, 'providedData') ? $this->providedData() : $this->getProvidedData();
+            $data = method_exists($this, 'getProvidedData') ? $this->getProvidedData() : $this->providedData();
             if (isset($data[0])) {
                 config([
                     'eloquent-tags.models.tag' => $data[0],
