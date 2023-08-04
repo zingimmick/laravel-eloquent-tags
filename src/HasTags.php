@@ -45,7 +45,7 @@ trait HasTags
      */
     public function scopeWithAllTags(
         Builder $query,
-        iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags
+        \Illuminate\Contracts\Support\Arrayable|iterable|Tag $tags
     ): Builder {
         $tags = static::parseTags($tags);
         $tags->each(
@@ -67,7 +67,7 @@ trait HasTags
      */
     public function scopeWithAnyTags(
         Builder $query,
-        iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags
+        \Illuminate\Contracts\Support\Arrayable|iterable|Tag $tags
     ): Builder {
         $tags = static::parseTags($tags);
 
@@ -84,7 +84,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function attachTags(iterable|\Illuminate\Contracts\Support\Arrayable|Tag $tags)
+    public function attachTags(\Illuminate\Contracts\Support\Arrayable|iterable|Tag $tags)
     {
         $this->tags()
             ->attach(static::parseTags($tags));
@@ -107,7 +107,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function detachTags(iterable|\Illuminate\Contracts\Support\Arrayable $tags)
+    public function detachTags(\Illuminate\Contracts\Support\Arrayable|iterable $tags)
     {
         $this->tags()
             ->detach(static::parseTags($tags));
@@ -130,7 +130,7 @@ trait HasTags
      *
      * @return $this
      */
-    public function syncTags(iterable|\Illuminate\Contracts\Support\Arrayable $tags)
+    public function syncTags(\Illuminate\Contracts\Support\Arrayable|iterable $tags)
     {
         $this->tags()
             ->sync(static::parseTags($tags));
@@ -141,7 +141,7 @@ trait HasTags
     /**
      * @param iterable<int, \Zing\LaravelEloquentTags\Tag|string>|\Illuminate\Contracts\Support\Arrayable<int, \Zing\LaravelEloquentTags\Tag|string> $values
      */
-    protected static function parseTags(iterable|\Illuminate\Contracts\Support\Arrayable $values): Collection
+    protected static function parseTags(\Illuminate\Contracts\Support\Arrayable|iterable $values): Collection
     {
         return Collection::make($values)->map(static fn ($value): Model => self::parseTag($value));
     }
