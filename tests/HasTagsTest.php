@@ -57,7 +57,7 @@ final class HasTagsTest extends TestCase
     {
         $this->product->attachTags(['foo', 'bar']);
         $this->product->detachTags(['foo']);
-        self::assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
     }
 
     /**
@@ -68,7 +68,7 @@ final class HasTagsTest extends TestCase
     public function testAttachTags(string $tagClass): void
     {
         $this->product->attachTags(['foo', 'bar']);
-        self::assertSame(2, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
+        $this->assertSame(2, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
     }
 
     /**
@@ -79,8 +79,8 @@ final class HasTagsTest extends TestCase
     public function testTags(string $tagClass): void
     {
         $this->product->attachTags(['foo', 'bar']);
-        self::assertInstanceOf($tagClass, $this->product->tags()->first());
-        self::assertInstanceOf(Collection::class, $this->product->tags()->get());
+        $this->assertInstanceOf($tagClass, $this->product->tags()->first());
+        $this->assertInstanceOf(Collection::class, $this->product->tags()->get());
     }
 
     /**
@@ -91,7 +91,7 @@ final class HasTagsTest extends TestCase
     public function testAttachTag(string $tagClass): void
     {
         $this->product->attachTag('foo');
-        self::assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
     }
 
     /**
@@ -103,7 +103,7 @@ final class HasTagsTest extends TestCase
     {
         $this->product->attachTags(['foo', 'bar']);
         $this->product->detachTag('foo');
-        self::assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
+        $this->assertSame(1, $this->product->tags()->whereIn('name', ['foo', 'bar'])->count());
     }
 
     /**
@@ -114,8 +114,8 @@ final class HasTagsTest extends TestCase
     public function testScopeWithAllTags(string $tagClass): void
     {
         $this->product->attachTag('foo');
-        self::assertFalse(Product::query()->withAllTags(['foo', 'bar'])->exists());
-        self::assertTrue(Product::query()->withAllTags(['foo'])->exists());
+        $this->assertFalse(Product::query()->withAllTags(['foo', 'bar'])->exists());
+        $this->assertTrue(Product::query()->withAllTags(['foo'])->exists());
     }
 
     /**
@@ -127,9 +127,9 @@ final class HasTagsTest extends TestCase
     {
         $this->product->attachTags(['foo', 'bar']);
         $this->product->syncTags([$this->product->tags()->firstOrFail()]);
-        self::assertSame(1, $this->product->tags()->count());
+        $this->assertSame(1, $this->product->tags()->count());
         $this->product->syncTags([]);
-        self::assertSame(0, $this->product->tags()->count());
+        $this->assertSame(0, $this->product->tags()->count());
     }
 
     /**
@@ -140,6 +140,6 @@ final class HasTagsTest extends TestCase
     public function testScopeWithAnyTags(string $tagClass): void
     {
         $this->product->attachTag('foo');
-        self::assertTrue(Product::query()->withAnyTags(['foo', 'bar'])->exists());
+        $this->assertTrue(Product::query()->withAnyTags(['foo', 'bar'])->exists());
     }
 }

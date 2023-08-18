@@ -11,6 +11,6 @@ final class ServiceProviderTest extends TestCase
 {
     public function testConfig(): void
     {
-        self::assertIsArray(config('eloquent-tags'));
+        $this->assertIsArray(config('eloquent-tags'));
     }
 }
