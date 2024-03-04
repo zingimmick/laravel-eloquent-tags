@@ -26,8 +26,5 @@ class Tag extends Model
      */
     public $timestamps = false;
 
-    /**
-     * @var string[]
-     */
     protected $fillable = ['name'];
 }
