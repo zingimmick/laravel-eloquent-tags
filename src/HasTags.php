@@ -26,9 +26,6 @@ trait HasTags
         return config('eloquent-tags.models.tag');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany<\Zing\LaravelEloquentTags\Tag>
-     */
     public function tags(): MorphToMany
     {
         return $this->morphToMany(
