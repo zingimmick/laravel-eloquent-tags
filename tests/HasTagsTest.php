@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zing\LaravelEloquentTags\Tests;
 
-use Illuminate\Database\Eloquent\Collection;
 use Zing\LaravelEloquentTags\Tag;
 use Zing\LaravelEloquentTags\Tests\Models\CustomTag;
 use Zing\LaravelEloquentTags\Tests\Models\Product;
@@ -80,7 +79,6 @@ final class HasTagsTest extends TestCase
     {
         $this->product->attachTags(['foo', 'bar']);
         $this->assertInstanceOf($tagClass, $this->product->tags()->first());
-        $this->assertInstanceOf(Collection::class, $this->product->tags()->get());
     }
 
     /**
@@ -126,7 +124,11 @@ final class HasTagsTest extends TestCase
     public function testSyncTags(string $tagClass): void
     {
         $this->product->attachTags(['foo', 'bar']);
-        $this->product->syncTags([$this->product->tags()->firstOrFail()]);
+
+        /** @var \Zing\LaravelEloquentTags\Tag $tag */
+        $tag = $this->product->tags()
+            ->firstOrFail();
+        $this->product->syncTags([$tag]);
         $this->assertSame(1, $this->product->tags()->count());
         $this->product->syncTags([]);
         $this->assertSame(0, $this->product->tags()->count());
