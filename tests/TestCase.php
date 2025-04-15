@@ -7,6 +7,7 @@ namespace Zing\LaravelEloquentTags\Tests;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use PHPUnit\Framework\Attributes\Before;
 use Zing\LaravelEloquentTags\EloquentTagsServiceProvider;
 
 abstract class TestCase extends BaseTestCase
@@ -14,6 +15,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * @before
      */
+    #[Before]
     protected function setUpDatabaseMigrations(): void
     {
         $this->afterApplicationCreated(function (): void {
