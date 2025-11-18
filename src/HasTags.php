@@ -140,7 +140,9 @@ trait HasTags
      */
     protected static function parseTags(\Illuminate\Contracts\Support\Arrayable|iterable $values): Collection
     {
-        return Collection::make($values)->map(static fn ($value): Model => self::parseTag($value));
+        return Collection::make($values)->map(
+            static fn (\Illuminate\Database\Eloquent\Model|string $value): Model => self::parseTag($value)
+        );
     }
 
     /**
